@@ -29,28 +29,16 @@ setup_twitter_oauth(twitter_consumer_key
                     , twitter_access_token
                     , twitter_access_secret)
 
-# Trump <- searchTwitter("Trump"
-#                        , n=1
-#                        , lang="en"
-#                        , since="2015-11-08"
-#                        , until="2016-11-17")
+highIneqLocs <- read.csv("/Users/jb/Documents/IU/2016Fall/Q370/FinalProject/HighIneqLocs.csv")
 
-### GET TWITTER DATA FOR GROUP "A" ###
-
-# SearchResultsA <- searchTwitter("rich", n=100, lang="en", geocode='43.4799,-110.7624,15mi')
-# SearchResultsA <- strip_retweets(SearchResultsA)
-# length(SearchResultsA)
-# SearchResultsA <- SearchResultsA[ ! sapply(SearchResultsA, is.null) ] # remove nulls
-# # SearchResults <- SearchResults[1:5] # to limit results
-# SearchResultsADf <- twListToDF(SearchResultsA)
-# SearchResultsAVec <- SearchResultsADf[,1]
-# print(SearchResultsAVec)
 
 # DONE
 # N = 13
 # HighIneq01 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "43.4799,-110.7624", "15mi"))
 # HighIneq01 <- cbind(city = "Jackson, WY/ID", HighIneq01)
 # HighIneq01 <- analyzeTweets(HighIneq01)
+HighIneq01New <- cbind.data.frame(HighIneq01$city, ratio = highIneqLocs[1,]$Ratio, word = "rich", tweet = HighIneq01[,2], score = HighIneq01[,3], type = HighIneq01[,4])
+colnames(HighIneq01New) <- c("city", "ratio", "word", "tweet", "score", "type")
 
 # DONE
 # N = 99
@@ -58,6 +46,8 @@ setup_twitter_oauth(twitter_consumer_key
 # HighIneq02 <- cbind(city = "Bridgeport-Stamford-Norwalk, CT", HighIneq02)
 # HighIneq02Test <- analyzeTweets(HighIneq02)
 # HighIneq02 <- HighIneq02Test
+HighIneq02New <- cbind.data.frame(HighIneq02$city, ratio = highIneqLocs[2,]$Ratio, word = "rich", tweet = HighIneq02[,2], score = HighIneq02[,3], type = HighIneq02[,4])
+colnames(HighIneq02New) <- c("city", "ratio", "word", "tweet", "score", "type")
 
 # DONE
 # N = 99
@@ -65,6 +55,8 @@ setup_twitter_oauth(twitter_consumer_key
 # HighIneq03 <- cbind(city = "Naples-Immokalee-Marco Island, FL", HighIneq03)
 # HighIneq03Test <- analyzeTweets(HighIneq03)
 # HighIneq03 <- HighIneq03Test
+HighIneq03New <- cbind.data.frame(HighIneq03$city, ratio = highIneqLocs[3,]$Ratio, word = "rich", tweet = HighIneq03[,2], score = HighIneq03[,3], type = HighIneq03[,4])
+colnames(HighIneq03New) <- c("city", "ratio", "word", "tweet", "score", "type")
 
 # DONE 
 # N = 33
@@ -72,6 +64,8 @@ setup_twitter_oauth(twitter_consumer_key
 # HighIneq04 <- cbind(city = "Sebastian-Vero Beach, FL", HighIneq04)
 # HighIneq04Test <- analyzeTweets(HighIneq04)
 # HighIneq04 <- HighIneq04Test
+HighIneq04New <- cbind.data.frame(HighIneq04$city, ratio = highIneqLocs[4,]$Ratio, word = "rich", tweet = HighIneq04[,2], score = HighIneq04[,3], type = HighIneq04[,4])
+colnames(HighIneq04New) <- c("city", "ratio", "word", "tweet", "score", "type")
 
 # DONE
 # N = 18
@@ -79,76 +73,83 @@ setup_twitter_oauth(twitter_consumer_key
 # HighIneq05 <- cbind(city = "Key West, FL", HighIneq05)
 # HighIneq05Test <- analyzeTweets(HighIneq05)
 # HighIneq05 <- HighIneq05Test
+HighIneq05New <- cbind.data.frame(HighIneq05$city, ratio = highIneqLocs[5,]$Ratio, word = "rich", tweet = HighIneq05[,2], score = HighIneq05[,3], type = HighIneq05[,4])
+colnames(HighIneq05New) <- c("city", "ratio", "word", "tweet", "score", "type")
 
-HighIneq06 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "38.8882,-119.7413", "15mi"))
-HighIneq07 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "26.1998,-80.1275", "15mi"))
-HighIneq08 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "31.9973,-102.0779", "15mi"))
-HighIneq09 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "39.5505,-107.3248", "15mi"))
-HighIneq10 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "31.4638,-100.437", "15mi"))
+# HighIneq06 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "38.8882,-119.7413", "15mi"))
+# HighIneq07 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "26.1998,-80.1275", "15mi"))
+# HighIneq08 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "31.9973,-102.0779", "15mi"))
+# HighIneq09 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "39.5505,-107.3248", "15mi"))
+# HighIneq10 <- as.data.frame(getMaxTweetsUpToN("rich", 100, "31.4638,-100.437", "15mi"))
 
+highIneqLocs.rows6to7.result <- getSentsByLocs(highIneqLocs.rows6to7, "rich", "15mi")
+highIneqLocs.rows8to10 <- highIneqLocs[8:10,]
+highIneqLocs.rows8to10.result <- getSentsByLocs(highIneqLocs.rows8to10, "rich", "15mi")
 
+testNewDf01 <- HighIneqAllCities.rich
+dump("testNewDf01", "/Users/jb/Documents/IU/2016Fall/Q370/FinalProject/testNewDf01.Rdmpd")
+rm(testNewDf01)
 
+highIneqLocs.rows1to5.result <- rbind(HighIneq01New, HighIneq02New, HighIneq03New, HighIneq04New, HighIneq05New)
 
+HighIneqAllCities.rich <- rbind(highIneqLocs.rows1to5.result, highIneqLocs.rows6to7.result, highIneqLocs.rows8to10.result)
 
+write.table(HighIneqAllCities.rich, "/Users/jb/Documents/IU/2016Fall/Q370/FinalProject/HighIneqAllCities_rich.txt", sep="\t")
+dump("HighIneqAllCities.rich", "/Users/jb/Documents/IU/2016Fall/Q370/FinalProject/HighIneqAllCities_rich.Rdmpd")
 
-
-
-
-### ANALYZE "A" DATA WITH WATSON SENTIMENT ANALYSIS ###
-
-# require(cognizer)
-# require(data.table)
-
-watson_sent_api_key <- Sys.getenv("Q370_WATSON_SENT_API_KEY")
-textA <- SearchResultsAVec
-
-resultA <- text_sentiment(textA, watson_sent_api_key)
-watsonUsed <- watsonUsed + length(textA) #12/04/2016
-str(resultA)
-#install.packages("data.table")
-
-#result <- rbindlist(result, fill=TRUE)
-sentimentScore = c()
-sentimentType = c()
-
-# Get only OK results
-resultAOnlyOK = c()
-for (i in 1:length(resultA)) {
-  if (resultA[[i]]$status == "OK") {
-    resultAOnlyOK<-append(resultAOnlyOK, resultA[i])
-  } else {
-    SearchResultsADf <- SearchResultsADf[-i,] # Delete the non-OK row from the dataframe of Tweets
+# Example: getSentsByLocs(highIneqLocs, "rich", "15mi")
+getSentsByLocs <- function(dfIn, searchWord, radius) {
+  
+  # Initialize df to return
+  df <- data.frame(loc=factor(),
+                   ratio=double(), 
+                   word=character(),
+                   tweet=character(),
+                   sentScore=double(),
+                   sentType=factor())
+  
+  for (i in 1:length(dfIn[,1])) { # For each city:
+    
+    # Get tweets
+    curDf <- as.data.frame(getMaxTweetsUpToN(searchWord, 100, paste(dfIn[i,]$Lat, ",", dfIn[i,]$Lon, sep=""), radius))
+    
+    # Combine other column info
+    curDf <- cbind(city = dfIn[i,]$City, ratio = dfIn[i,]$Ratio, word = searchWord, curDf)
+    
+    # Analyze the tweets with Watson
+    curDf <- analyzeTweets(curDf)
+    
+    # correct the column names
+    colnames(curDf) <- c("city", "ratio", "word", "tweet", "score", "type")
+    
+    # Add the curDf to the main df to be returned
+    df <- rbind(df,curDf)
+    
   }
+  
+  return(df)
 }
 
-# Get sentimentScore for all "OK" - if Tweet is neutral, put 0
-for (i in 1:length(resultAOnlyOK)) {
-  if (resultAOnlyOK[[i]]$docSentiment$type == "neutral") {
-    sentimentScore<-append(sentimentScore, 0)
-  } else {
-    sentimentScore<-append(sentimentScore, resultAOnlyOK[[i]]$docSentiment$score)
-  }
-}
-
-#Get sentiment type for all "OK"
-for (i in 1:length(resultAOnlyOK)) sentimentType<-append(sentimentType, resultAOnlyOK[[i]]$docSentiment$type)
 
 
-# (Should be the same length)
-length(sentimentScore)
-length(sentimentType)
 
+# rm(df)
+# dfTest <- data.frame(loc=factor(),
+#                  ratio=double(), 
+#                  word=character(),
+#                  tweet=character(),
+#                  sentScore=double(),
+#                  sentType=factor())
+# curDf01 <- as.data.frame(getMaxTweetsUpToN("rich", 10, paste(highIneqLocs[1,]$Lat, ",", highIneqLocs[1,]$Lon, sep=""), "15mi"))
+# curDf <- cbind(city = highIneqLocs[1,]$City, ratio = highIneqLocs[1,]$Ratio, word = "rich", curDf01)
+# curDfAfterAnalysis <- analyzeTweets(curDf)
+# colnames(curDfAfterAnalysis) <- c("city", "ratio", "word", "tweet", "score", "type")
+# dfTest <- rbind(curDfAfterAnalysis)
 
-SearchResultsADf$score <- as.numeric(sentimentScore)
-SearchResultsADf$type <- sentimentType
-
-
-mean(SearchResultsADf$score)
-
-
+# df should have columns: CITY, TWEET
 analyzeTweets <- function(df) {
   
-  tweets <- df[,2]
+  tweets <- df[,4]
   
   watson_sent_api_key <- Sys.getenv("Q370_WATSON_SENT_API_KEY")
   watsonResp <- text_sentiment(tweets, watson_sent_api_key) # Response from Watson
@@ -156,7 +157,7 @@ analyzeTweets <- function(df) {
   
   sentScore = c()
   sentType = c()
-  
+
   # Get only OK results
   watsonRespOnlyOK = c()
   for (i in 1:length(watsonResp)) {
@@ -166,7 +167,7 @@ analyzeTweets <- function(df) {
       df <- df[-i,] # Delete the non-OK row from the dataframe of Tweets
     }
   }
-  
+
   # Get sentScore for all "OK" - if Tweet is neutral, put 0
   for (i in 1:length(watsonRespOnlyOK)) {
     if (watsonRespOnlyOK[[i]]$docSentiment$type == "neutral") {
@@ -175,87 +176,19 @@ analyzeTweets <- function(df) {
       sentScore<-append(sentScore, watsonRespOnlyOK[[i]]$docSentiment$score)
     }
   }
-  
+
   #Get sentiment type for all "OK"
   for (i in 1:length(watsonRespOnlyOK)) sentType<-append(sentType, watsonRespOnlyOK[[i]]$docSentiment$type)
-  
+
   if (length(sentScore) != length(sentType)) {
     return("Error: Sentiment Score length and Sentiment Type length do not match.")
-  } 
-  
+  }
+
   df$score <- as.numeric(sentScore)
   df$type <- sentType
-  
+
   return (df)
-  
 }
-
-
-
-
-
-### GET TWITTER DATA FOR GROUP "B" ###
-
-SearchResultsB <- searchTwitter("poor", n=100, lang="en", geocode='43.4799,-110.7624,15mi')
-SearchResultsB <- strip_retweets(SearchResultsB)
-length(SearchResultsB)
-SearchResultsB <- SearchResultsB[ ! sapply(SearchResultsB, is.null) ] # remove nulls
-# SearchResults <- SearchResults[1:5] # to limit results
-SearchResultsBDf <- twListToDF(SearchResultsB)
-SearchResultsBVec <- SearchResultsBDf[,1]
-
-
-### ANALYZE DATA WITH WATSON SENTIMENT ANALYSIS ###
-
-# require(cognizer)
-# require(data.table)
-
-watson_sent_api_key <- Sys.getenv("Q370_WATSON_SENT_API_KEY")
-textB <- SearchResultsBVec
-print(textB)
-
-resultB <- text_sentiment(textB, watson_sent_api_key)
-str(resultB)
-watsonUsed <- watsonUsed + length(textB) #12/04/2016
-#install.packages("data.table")
-
-#result <- rbindlist(result, fill=TRUE)
-sentimentScore = c()
-sentimentType = c()
-
-# Get only OK results
-resultBOnlyOK = c()
-for (i in 1:length(resultB)) {
-  if (resultB[[i]]$status == "OK") {
-    resultBOnlyOK<-append(resultBOnlyOK, resultB[i])
-  } else {
-    SearchResultsBDf <- SearchResultsBDf[-i,] # Delete the non-OK row from the dataframe of Tweets
-  }
-}
-
-# Get sentimentScore for all "OK" - if Tweet is neutral, put 0
-for (i in 1:length(resultBOnlyOK)) {
-  if (resultBOnlyOK[[i]]$docSentiment$type == "neutral") {
-    sentimentScore<-append(sentimentScore, 0)
-  } else {
-    sentimentScore<-append(sentimentScore, resultBOnlyOK[[i]]$docSentiment$score)
-  }
-}
-
-#Get sentiment type for all "OK"
-for (i in 1:length(resultBOnlyOK)) sentimentType<-append(sentimentType, resultBOnlyOK[[i]]$docSentiment$type)
-
-
-# (Should be the same length)
-length(sentimentScore)
-length(sentimentType)
-
-SearchResultsBDf$score <- as.numeric(sentimentScore)
-SearchResultsBDf$type <- sentimentType
-
-
-mean(SearchResultsBDf$score)
-
 
 # Example: getMaxTweetsUpToN("rich", 100, "37.781157,-122.39720", "15mi")
 getMaxTweetsUpToN <- function(word, n, loc, radius, lang, strip){
